@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Dice Rolling Bot designed around SLA Industries for Discord",
   "main": "index.js",
-  "repository": "",
+  "repository": "github.com:Ard4nis/sla-industries-bot.git",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
