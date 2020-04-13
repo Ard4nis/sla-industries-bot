@@ -21,13 +21,14 @@ client.login(token);
 
 client.on('message', message => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
-
+	message.delete();
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const commandName = args.shift().toLowerCase();
 
-	if(!client.commands.has(commandName)) return;
+	const command = client.commands.get(commandName)
+		|| client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 
-	const command = client.commands.get(commandName);
+	if (!command) return message.reply(`${commandName} is not a valid command!`);
 
 	if (command.args && !args.length) {
 		let reply = `You didn't provide any arguments, ${message.author}!`;
@@ -63,6 +64,6 @@ client.on('message', message => {
 	}
 	catch (error) {
 		console.error(error);
-		message.reply('there was an error trying to execute that command!');
+		message.reply('There was an error trying to execute that command!');
 	}
 });

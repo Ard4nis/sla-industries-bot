@@ -1,5 +1,6 @@
 module.exports = {
 	name: 'prune',
+	aliases: ['delete', 'clear'],
 	description: 'Delete {0} amount of messages up to 100',
 	execute(message, args) {
 		const amount = parseInt(args[0]) + 1;
