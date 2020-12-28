@@ -1,4 +1,7 @@
 # sla-industries-bot
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d00b0d16cac0412db5c9c7dd1958d565)](https://app.codacy.com/gh/Ard4nis/sla-industries-bot?utm_source=github.com&utm_medium=referral&utm_content=Ard4nis/sla-industries-bot&utm_campaign=Badge_Grade_Settings)
+
 Used for running the Quick Start for SLA Industries 2nd Edition via Discord.
 
 Node.JS is required for this bot to work.
