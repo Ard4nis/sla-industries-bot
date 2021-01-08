@@ -39,20 +39,6 @@ module.exports = {
 			};
 		};
 
-		fields.push({
-			name: '**Success**',
-			value: `\`\`\`yaml\n${parseInt(diceRolls[0]) + modifier}\n\`\`\``,
-			inline: true,
-		}, {
-			name: '\u200b',
-			value: '\u200b',
-			inline: true,
-		}, {
-			name: '\u200b',
-			value: '\u200b',
-			inline: true,
-		});
-
 		if (amount < 3) {
 			while (i !== 3) {
 				fields.push(emptyField);
