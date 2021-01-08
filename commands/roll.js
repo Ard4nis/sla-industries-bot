@@ -41,15 +41,18 @@ module.exports = {
 			};
 		};
 
-		if (amount - 1 < 3) {
-			while (i !== 3) {
-				fields.push(emptyField);
-				i++;
-			}
-		} else if (amount - 1 < 6 && amount - 1 > 3) {
-			while (i !== 6) {
-				fields.push(emptyField);
-				i++;
+		if (amount > 1) {
+			i = i - 1;
+			if (amount - 1 < 3) {
+				while (i !== 3) {
+					fields.push(emptyField);
+					i++;
+				}
+			} else if (amount - 1 < 6 && amount - 1 > 3) {
+				while (i !== 6) {
+					fields.push(emptyField);
+					i++;
+				}
 			}
 		}
 
