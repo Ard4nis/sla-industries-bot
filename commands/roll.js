@@ -7,7 +7,7 @@ module.exports = {
 	execute(message, args) {
 		const amount = parseInt(args[0]);
 
-		if(amount > 6 || amount < 1) {
+		if (amount > 6 || amount < 1) {
 			return message.reply('You need to input a number between 1 and 6 for the amount of dice');
 		}
 		const modifier = parseInt(args[1]) || 0;
@@ -23,14 +23,16 @@ module.exports = {
 
 		let i = 0;
 
+		fields.push({
+			name: '**Success**',
+			value: `\`\`\`yaml\n${parseInt(diceRolls[succesDie]) + modifier}\n\`\`\``,
+			inline: true,
+		},
+			emptyField,
+			emptyField)
+
 		for (i; i < amount; i++) {
-			if (i === succesDie) {
-				fields.push({
-					name: '**Success**',
-					value: `\`\`\`yaml\n${parseInt(diceRolls[i]) + modifier}\n\`\`\``,
-					inline: true,
-				});
-			} else {
+			if (i !== succesDie) {
 				fields.push({
 					name: `**Skill Die**`,
 					value: `\`\`\`\n${parseInt(diceRolls[i]) + modifier}\n\`\`\``,
@@ -39,13 +41,13 @@ module.exports = {
 			};
 		};
 
-		if (amount < 3) {
+		if (amount - 1 < 3) {
 			while (i !== 3) {
 				fields.push(emptyField);
 				i++;
 			}
-		} else if (amount < 6 && amount > 3) {
-			while (i !== 6){
+		} else if (amount - 1 < 6 && amount - 1 > 3) {
+			while (i !== 6) {
 				fields.push(emptyField);
 				i++;
 			}
@@ -65,8 +67,8 @@ module.exports = {
 function findSuccessDie(amount) {
 	let succesDieIndex = 0;
 	if (amount > 1) {
-		succesDieIndex = Math.floor(Math.random() * amount)	
-	} 
+		succesDieIndex = Math.floor(Math.random() * amount)
+	}
 	return succesDieIndex;
 }
 
