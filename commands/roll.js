@@ -13,6 +13,31 @@ module.exports = {
 		const modifier = parseInt(args[1]) || 0;
 		const diceRolls = roll(amount);
 		const fields = [];
+		const succesDie = findSuccessDie(amount)
+
+		const emptyField = {
+			name: '\u200b',
+			value: '\u200b',
+			inline: true,
+		};
+
+		let i = 0;
+
+		for (i; i < amount; i++) {
+			if (i === succesDie) {
+				fields.push({
+					name: '**Success**',
+					value: `\`\`\`yaml\n${parseInt(diceRolls[i]) + modifier}\n\`\`\``,
+					inline: true,
+				});
+			} else {
+				fields.push({
+					name: `**Skill Die**`,
+					value: `\`\`\`\n${parseInt(diceRolls[i]) + modifier}\n\`\`\``,
+					inline: true,
+				});
+			};
+		};
 
 		fields.push({
 			name: '**Success**',
@@ -28,35 +53,15 @@ module.exports = {
 			inline: true,
 		});
 
-		if (diceRolls.length > 1) {
-			let i;
-			for(i = 1; i < diceRolls.length; i++) {
-				fields.push({
-					name: `**Skill Die ${i}**`,
-					value: `\`\`\`\n${parseInt(diceRolls[i]) + modifier}\n\`\`\``,
-					inline: true,
-				});
+		if (amount < 3) {
+			while (i !== 3) {
+				fields.push(emptyField);
+				i++;
 			}
-
-			if(diceRolls.length < 4) {
-				while(i !== 4) {
-					fields.push({
-						name: '\u200b',
-						value: '\u200b',
-						inline: true,
-					});
-					i++;
-				}
-			}
-			else if(diceRolls.length > 4) {
-				while(i !== 7) {
-					fields.push({
-						name: '\u200b',
-						value: '\u200b',
-						inline: true,
-					});
-					i++;
-				}
+		} else if (amount < 6 && amount > 3) {
+			while (i !== 6){
+				fields.push(emptyField);
+				i++;
 			}
 		}
 
@@ -70,6 +75,14 @@ module.exports = {
 
 	},
 };
+
+function findSuccessDie(amount) {
+	let succesDieIndex = 0;
+	if (amount > 1) {
+		succesDieIndex = Math.floor(Math.random() * amount)	
+	} 
+	return succesDieIndex;
+}
 
 function rollDie() {
 	return 1 + Math.floor(Math.random() * 10);

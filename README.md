@@ -1,5 +1,5 @@
 # sla-industries-bot
-Used for running the Quick Start for SLA Industries 2nd Edition via Discord.
+Used for rolling dice for SLA Industries 2nd Edition via Discord.
 
 Node.JS is required for this bot to work.
 
@@ -24,30 +24,14 @@ Included in this repo are all the character sheets and the quick reference as in
 ### Commands
 To use the commands you simply start up the bot with node . in your terminal and type a message in your server with your prefix and one of the following commands:
 ```
-'bpn'
-    description: 'The BPN for the Quick Start Game'
-
 'help'
     description: 'List all of my commands or info about a specific command.'
     aliases: [ 'commands' ]
     usage: '[command name]'
     cooldown: 5
- 
-'prune'
-    aliases: [ 'delete', 'clear' ],
-    description: 'Delete {0} amount of messages up to 100',
-    
-'quick'
-    description: 'The Quick Reference from the Quick Start Game',
-    
+     
 'roll'
     cooldown: 5,
     usage: '<amount of dice> <modifier>',
     description: 'Roll your dice!',
-    
-'sheet'
-    description: 'Returns the character sheet for the specific character from the Quick Start Game',
-    usage: [ 'character name' ]
-        The following names are usable:     
-        Dru, Gawl, Opal, Sass, Tammy
 ```
